@@ -26,6 +26,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Docs (keep only main README)
-*.md
-!README.md
+# Docs (only keep repository root README)
+**/*.md
+!/README.md
