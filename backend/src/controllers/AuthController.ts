@@ -1,8 +1,8 @@
 import type { Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import type { AuthRequest } from '../middleware/auth.ts';
-import { UserModel } from '../models/UserModel.ts';
-import { hashPassword, comparePassword, generateToken } from '../utils/auth.ts';
+import type { AuthRequest } from '../middleware/auth';
+import { UserModel } from '../models/UserModel';
+import { hashPassword, comparePassword, generateToken } from '../utils/auth';
 
 export class AuthController {
   static async registerAdmin(req: AuthRequest, res: Response) {

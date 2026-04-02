@@ -2,7 +2,7 @@ import express from 'express';
 import type { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import routes from './routes/index.ts';
+import routes from './routes/index';
 
 dotenv.config();
 

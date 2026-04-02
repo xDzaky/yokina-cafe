@@ -1,5 +1,5 @@
-import pool from '../config/database.ts';
-import type { User } from '../types/index.ts';
+import pool from '../config/database';
+import type { User } from '../types/index';
 
 export class UserModel {
   static async findByEmail(email: string): Promise<User | null> {

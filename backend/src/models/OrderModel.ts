@@ -1,5 +1,5 @@
-import pool from '../config/database.ts';
-import type { Order, OrderItem } from '../types/index.ts';
+import pool from '../config/database';
+import type { Order, OrderItem } from '../types/index';
 
 export class OrderModel {
   static async create(order: Partial<Order>): Promise<string> {

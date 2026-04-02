@@ -7,8 +7,6 @@ export interface AuthRequest extends Request {
     email: string;
     role: string;
   };
-  body?: any;
-  headers?: any;
 }
 
 export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {

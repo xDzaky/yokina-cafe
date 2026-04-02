@@ -1,4 +1,4 @@
-import pool from '../config/database.ts';
+import pool from '../config/database';
 
 export class BillModel {
   static async create(bill: any): Promise<string> {

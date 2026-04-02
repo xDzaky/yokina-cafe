@@ -1,7 +1,7 @@
 import type { Response } from 'express';
-import type { AuthRequest } from '../middleware/auth.ts';
-import { BillModel } from '../models/BillModel.ts';
-import { OrderModel } from '../models/OrderModel.ts';
+import type { AuthRequest } from '../middleware/auth';
+import { BillModel } from '../models/BillModel';
+import { OrderModel } from '../models/OrderModel';
 
 export class BillController {
   static async verifyBill(req: AuthRequest, res: Response) {

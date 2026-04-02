@@ -1,10 +1,10 @@
 import type { Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import type { AuthRequest } from '../middleware/auth.ts';
-import { OrderModel } from '../models/OrderModel.ts';
-import { BillModel } from '../models/BillModel.ts';
-import { FinancialModel } from '../models/FinancialModel.ts';
-import { generateBillNumber, generateQRCode, generateWhatsAppMessage } from '../utils/bill.ts';
+import type { AuthRequest } from '../middleware/auth';
+import { OrderModel } from '../models/OrderModel';
+import { BillModel } from '../models/BillModel';
+import { FinancialModel } from '../models/FinancialModel';
+import { generateBillNumber, generateQRCode, generateWhatsAppMessage } from '../utils/bill';
 
 export class AdminController {
   static async getDashboard(req: AuthRequest, res: Response) {
@@ -172,7 +172,7 @@ export class AdminController {
       const financial = {
         id: uuidv4(),
         outlet_id,
-        type: 'expense',
+        type: 'expense' as const,
         category,
         amount,
         description,

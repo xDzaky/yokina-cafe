@@ -1,11 +1,11 @@
 import type { Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import type { AuthRequest } from '../middleware/auth.ts';
-import { OrderModel } from '../models/OrderModel.ts';
-import { UserModel } from '../models/UserModel.ts';
-import { LoyaltyModel } from '../models/LoyaltyModel.ts';
-import { ProductModel } from '../models/ProductModel.ts';
-import { calculateLoyaltyPoints } from '../utils/loyalty.ts';
+import type { AuthRequest } from '../middleware/auth';
+import { OrderModel } from '../models/OrderModel';
+import { UserModel } from '../models/UserModel';
+import { LoyaltyModel } from '../models/LoyaltyModel';
+import { ProductModel } from '../models/ProductModel';
+import { calculateLoyaltyPoints } from '../utils/loyalty';
 
 export class CustomerController {
   static async placeOrder(req: AuthRequest, res: Response) {
@@ -39,8 +39,8 @@ export class CustomerController {
         total_price: totalPrice,
         order_type, // 'dine_in', 'takeaway', 'delivery', 'whatsapp'
         payment_method,
-        status: 'pending',
-        payment_status: payment_method === 'cash' ? 'unpaid' : 'pending',
+        status: 'pending' as const,
+        payment_status: 'unpaid' as const,
         created_at: new Date(),
       };
 

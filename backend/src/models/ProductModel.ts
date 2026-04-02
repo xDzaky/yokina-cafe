@@ -1,4 +1,4 @@
-import pool from '../config/database.ts';
+import pool from '../config/database';
 
 export class ProductModel {
   static async create(product: any): Promise<string> {

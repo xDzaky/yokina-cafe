@@ -1,11 +1,11 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { AuthController } from '../controllers/AuthController.ts';
-import { AdminController } from '../controllers/AdminController.ts';
-import { CustomerController } from '../controllers/CustomerController.ts';
-import { BillController } from '../controllers/BillController.ts';
-import { verifyToken, verifyAdmin, verifyCustomer } from '../middleware/auth.ts';
-import type { AuthRequest } from '../middleware/auth.ts';
+import { AuthController } from '../controllers/AuthController';
+import { AdminController } from '../controllers/AdminController';
+import { CustomerController } from '../controllers/CustomerController';
+import { BillController } from '../controllers/BillController';
+import { verifyToken, verifyAdmin, verifyCustomer } from '../middleware/auth';
+import type { AuthRequest } from '../middleware/auth';
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import pool from '../config/database.ts';
+import pool from '../config/database';
 
 export class LoyaltyModel {
   static async addPoints(customerId: string, orderId: string, points: number): Promise<void> {

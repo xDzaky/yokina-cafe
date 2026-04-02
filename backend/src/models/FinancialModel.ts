@@ -1,5 +1,5 @@
-import pool from '../config/database.ts';
-import type { Financial, MonthlySummary } from '../types/index.ts';
+import pool from '../config/database';
+import type { Financial, MonthlySummary } from '../types/index';
 
 export class FinancialModel {
   static async create(financial: Partial<Financial>): Promise<string> {
