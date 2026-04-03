@@ -8,9 +8,27 @@ import { generateBillNumber, generateQRCode, generateWhatsAppMessage } from '../
 
 export class AdminController {
   static async getDashboard(req: AuthRequest, res: Response) {
-    try {
-      const outletId = req.query.outlet_id as string;
+    const outletId = (req.query.outlet_id as string) || 'default-outlet-id';
 
+    const emptyResponse = {
+      today: {
+        date: new Date(),
+        total_income: 0,
+        total_expense: 0,
+        net_profit: 0,
+        order_count: 0,
+      },
+      monthly: {
+        outlet_id: outletId,
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear(),
+        total_income: 0,
+        total_expense: 0,
+        net_profit: 0,
+      },
+    };
+
+    try {
       const todayReport = await FinancialModel.getDailyReport(outletId, new Date());
       const monthlyReport = await FinancialModel.getMonthlyReport(
         outletId,
@@ -19,12 +37,13 @@ export class AdminController {
       );
 
       res.status(200).json({
-        today: todayReport,
-        monthly: monthlyReport,
+        today: todayReport || emptyResponse.today,
+        monthly: monthlyReport || emptyResponse.monthly,
       });
     } catch (error) {
       console.error('Dashboard error:', error);
-      res.status(500).json({ message: 'Failed to get dashboard data' });
+      // Keep dashboard accessible even if DB report queries fail.
+      res.status(200).json(emptyResponse);
     }
   }
 
