@@ -12,6 +12,7 @@ const connectionUrl =
 const pool = connectionUrl
   ? mysql.createPool({
       uri: connectionUrl,
+      connectTimeout: 10000,
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
@@ -23,6 +24,7 @@ const pool = connectionUrl
       user: process.env.DB_USER || process.env.MYSQLUSER || 'root',
       password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || '',
       database: process.env.DB_NAME || process.env.MYSQLDATABASE || 'yokina_cafe',
+      connectTimeout: 10000,
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
