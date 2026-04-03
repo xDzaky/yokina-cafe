@@ -3,6 +3,7 @@ import type { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import routes from './routes/index';
+import { initDatabase } from './config/database';
 
 dotenv.config();
 
@@ -34,9 +35,20 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ message: 'Internal server error' });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await initDatabase();
+    console.log('✅ Database initialized');
+
+    app.listen(PORT, () => {
+      console.log(`✅ Server running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to initialize database:', error);
+    process.exit(1);
+  }
+};
+
+void startServer();
 
 export default app;
